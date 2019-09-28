@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:plants/currency_formater_helper.dart';
-import 'package:plants/plant_detail.dart';
-import 'package:plants/plant_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:plants/colors.dart' as AppColors;
+import 'package:plants/helpers/currency_formater_helper.dart';
+import 'package:plants/model/plant_model.dart';
+import 'package:plants/pages/detail_page.dart';
 
 class PlantsList extends StatefulWidget {
   final List<Plant> plants;
@@ -25,7 +26,7 @@ class _PlantsListState extends State<PlantsList> {
     return Container(
       child: ListView.builder(
         controller: widget.scrollController,
-        padding: EdgeInsets.only(left: 15.0),
+        padding: EdgeInsets.only(left: 40.0),
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, int index) {
           return _buildPlantCard(widget.plants[index], index);
@@ -36,27 +37,45 @@ class _PlantsListState extends State<PlantsList> {
   }
 
   Widget _buildPlantCard(Plant plant, int index) {
-    return Padding(
+    return Container(
       padding: EdgeInsets.only(right: 15.0),
-      child: Container(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: (widget.showIndex == index)
-                    ? Color.fromRGBO(67, 170, 102, 1)
-                    : Color.fromRGBO(127, 172, 136, 1),
+      child: GestureDetector(
+        child: Container(
+          child: Stack(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: (widget.showIndex == index)
+                      ? AppColors.mainColor
+                      : AppColors.secondColor,
+                ),
+                height: 350.0,
+                width: 220.0,
               ),
-              height: 400.0,
-              width: 270.0,
-            ),
-            _buildImage(plant.image),
-            _buildPrice(plant.price),
-            _buildInfo(plant),
-            _buildAddToCart(),
-          ],
+              _buildImage(plant.image),
+              _buildPrice(plant.price),
+              _buildInfo(plant),
+              _buildAddToCart(),
+            ],
+          ),
         ),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => DetailPage(plant),
+            ),
+          );
+          // Navigator.push(
+          //   context,
+          //   PageRouteBuilder(
+          //     pageBuilder: (c, a1, a2) => PlantDetail(plant),
+          //     transitionsBuilder: (c, anim, a2, child) =>
+          //         FadeTransition(opacity: anim, child: child),
+          //     transitionDuration: Duration(milliseconds: 0),
+          //   ),
+          // );
+        },
       ),
     );
   }
@@ -111,8 +130,8 @@ class _PlantsListState extends State<PlantsList> {
 
   Widget _buildInfo(Plant plant) {
     return Positioned(
-      top: 280.0,
-      left: 15.0,
+      top: 245.0,
+      left: 25.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -189,7 +208,7 @@ class _PlantsListState extends State<PlantsList> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => PlantDetail(plant),
+                      builder: (context) => DetailPage(plant),
                     ),
                   );
                 },
@@ -203,8 +222,8 @@ class _PlantsListState extends State<PlantsList> {
 
   Widget _buildAddToCart() {
     return Positioned(
-      top: 375.0,
-      left: 110,
+      top: 325.0,
+      left: 85,
       child: Container(
         height: 50.0,
         width: 50.0,
