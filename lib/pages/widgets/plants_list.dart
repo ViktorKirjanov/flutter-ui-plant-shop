@@ -38,7 +38,7 @@ class _PlantsListState extends State<PlantsList> {
 
   Widget _buildPlantCard(Plant plant, int index) {
     return Container(
-      padding: EdgeInsets.only(right: 15.0),
+      padding: EdgeInsets.only(right: 15.0, top: 15.0),
       child: GestureDetector(
         child: Container(
           child: Stack(
@@ -61,20 +61,12 @@ class _PlantsListState extends State<PlantsList> {
           ),
         ),
         onTap: () {
-          Navigator.of(context).push(
+          Navigator.push(
+            context,
             MaterialPageRoute(
-              builder: (context) => DetailPage(plant),
+              builder: (context) => DetailPage(plant: plant),
             ),
           );
-          // Navigator.push(
-          //   context,
-          //   PageRouteBuilder(
-          //     pageBuilder: (c, a1, a2) => PlantDetail(plant),
-          //     transitionsBuilder: (c, anim, a2, child) =>
-          //         FadeTransition(opacity: anim, child: child),
-          //     transitionDuration: Duration(milliseconds: 0),
-          //   ),
-          // );
         },
       ),
     );
@@ -208,7 +200,7 @@ class _PlantsListState extends State<PlantsList> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => DetailPage(plant),
+                      builder: (context) => DetailPage(plant: plant),
                     ),
                   );
                 },

@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class Plant {
   String name;
   List<String> type;
@@ -7,15 +9,21 @@ class Plant {
   String image;
   String size;
   String desctiption;
+  int potSize;
+  int minSize;
+  int maxSize;
 
   Plant({
-    this.name,
-    this.type,
-    this.top,
-    this.plantOfTheMonth,
-    this.price,
-    this.image,
-    this.size,
-    this.desctiption,
+    @required this.name,
+    @required this.type,
+    @required this.top,
+    @required this.plantOfTheMonth,
+    @required this.price,
+    @required this.image,
+    @required this.size,
+    @required this.desctiption,
+    @required this.potSize,
+    @required this.minSize,
+    @required this.maxSize,
   });
 }

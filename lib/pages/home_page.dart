@@ -30,6 +30,9 @@ class _HomePageState extends State<HomePage>
       image: 'assets/images/monstera.png',
       desctiption:
           'Monstera deliciosa, the ceriman, is a species of flowering plant native to tropical forests of southern Mexico, south to Panama. It has been introduced to many tropical areas, and has become a mildly invasive species in Hawaii, Seychelles, Ascension Island and the Society Islands.',
+      potSize: 12,
+      minSize: 35,
+      maxSize: 45,
     ),
     Plant(
       name: 'Bird of Paradise',
@@ -41,6 +44,9 @@ class _HomePageState extends State<HomePage>
       image: 'assets/images/bird_of_paradise.png',
       desctiption:
           'Strelitzia alba is a herbaceous plant of the Bird of Paradise family and is endemic to the Garden Route along the southernmost coastal regions of the Eastern and Western Cape in South Africa. The Swedish botanist Thunberg, who in 1792 described and published it in Nov. Gen. Pl.: 113 as Strelitzia augusta, first found it in the neighbourhood of the Piesang River at Plettenberg Bay – \'piesang\' being Afrikaans for \'banana\'. Francis Masson, who was then the Botanical Collector for Kew, introduced it to Europe in 1791. This is one of three arborescent Strelitzias, the other two being Strelitzia caudata and Strelitzia nicolai.',
+      potSize: 12,
+      minSize: 35,
+      maxSize: 45,
     ),
     Plant(
       name: 'Cat Palm',
@@ -52,6 +58,9 @@ class _HomePageState extends State<HomePage>
       image: 'assets/images/cat_palm.png',
       desctiption:
           'The Cat Palm is the most popular from the Chamaedora species of trees. The palm itself doesn\'t have a trunk and it’s frawns have a downward growing pattern. They are often used as garden bed “bushy” plants in tropical and subtropical regions under tall growing trees that provide large amounts of shade. The scientific name for the Cat Palm is Chamaedorea (ky-mee-DOR-ee-uh) Cataractarum (kat-uh-RAK-tar-um).',
+      potSize: 12,
+      minSize: 35,
+      maxSize: 45,
     ),
   ];
 
@@ -184,7 +193,7 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildSlider() {
     return Container(
-      height: 400,
+      height: 390,
       child: TabBarView(
         controller: tabController,
         children: <Widget>[

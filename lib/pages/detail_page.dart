@@ -5,20 +5,14 @@ import 'package:plants/model/plant_model.dart';
 import 'package:plants/widgets/description_widget.dart';
 import 'package:plants/widgets/shopping_basket.dart';
 
-class DetailPage extends StatefulWidget {
+class DetailPage extends StatelessWidget {
   final Plant plant;
 
-  DetailPage(this.plant);
+  DetailPage({@required this.plant});
 
-  @override
-  _DetailPageState createState() => _DetailPageState();
-}
-
-class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -33,7 +27,7 @@ class _DetailPageState extends State<DetailPage> {
                 Column(
                   children: <Widget>[
                     _buildHeader(context),
-                    _buildPlantInfo(),
+                    _buildPlantInfo(context),
                     Container(
                       height: 100.0,
                       decoration: BoxDecoration(
@@ -81,7 +75,7 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  Widget _buildPlantInfo() {
+  Widget _buildPlantInfo(context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(left: 40),
@@ -93,7 +87,7 @@ class _DetailPageState extends State<DetailPage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  for (String type in widget.plant.type)
+                  for (String type in plant.type)
                     Padding(
                       padding: EdgeInsets.only(right: 10.0),
                       child: Text(
@@ -108,7 +102,7 @@ class _DetailPageState extends State<DetailPage> {
                 ],
               ),
               Text(
-                widget.plant.name,
+                plant.name,
                 style: TextStyle(
                   fontSize: 32.0,
                   fontWeight: FontWeight.bold,
@@ -130,7 +124,7 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               ),
               Text(
-                CurrencyFormater.usdFormat(widget.plant.price),
+                CurrencyFormater.usdFormat(plant.price),
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.w300,
@@ -151,7 +145,7 @@ class _DetailPageState extends State<DetailPage> {
                     color: AppColors.captionTextColor),
               ),
               Text(
-                '${widget.plant.size}',
+                '${plant.size}',
                 style: TextStyle(
                     fontSize: 22.0,
                     fontWeight: FontWeight.w300,
@@ -184,7 +178,7 @@ class _DetailPageState extends State<DetailPage> {
       child: Container(
         child: Image(
           height: 400,
-          image: AssetImage(widget.plant.image),
+          image: AssetImage(plant.image),
           fit: BoxFit.fitHeight,
           width: MediaQuery.of(context).size.width / 1.1,
         ),
@@ -194,52 +188,46 @@ class _DetailPageState extends State<DetailPage> {
 
   Widget _buildDescription() {
     return Container(
-      child: Container(
-        color: Colors.white,
-        padding: EdgeInsets.fromLTRB(40.0, 0.0, 20.0, 40.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'All to know ...',
-              style: TextStyle(
-                fontSize: 26.0,
-                fontWeight: FontWeight.w600,
-                color: Color.fromRGBO(59, 59, 59, 1),
-              ),
+      color: Colors.white,
+      padding: EdgeInsets.fromLTRB(40.0, 0.0, 20.0, 40.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'All to know ...',
+            style: TextStyle(
+              fontSize: 26.0,
+              fontWeight: FontWeight.w600,
+              color: Color.fromRGBO(59, 59, 59, 1),
             ),
-            SizedBox(
-              height: 30.0,
+          ),
+          SizedBox(height: 30.0),
+          Description(text: plant.desctiption),
+          SizedBox(height: 30.0),
+          Text(
+            'Detail',
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 10.0),
+          Text(
+            'Plant height: ${plant.minSize}-${plant.maxSize}cm;',
+            style: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w600,
+              color: AppColors.descriptionTextColor,
+              height: 1.4,
             ),
-            Description(
-                text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
-            SizedBox(height: 30.0),
-            Text(
-              'DetailPages',
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+          ),
+          Text(
+            'Nursery pot width: ${plant.potSize}cm',
+            style: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w600,
+              color: AppColors.descriptionTextColor,
+              height: 1.4,
             ),
-            SizedBox(height: 10.0),
-            Text(
-              'Plant height: 35-45cm;',
-              style: TextStyle(
-                fontSize: 12.0,
-                fontWeight: FontWeight.w600,
-                color: AppColors.descriptionTextColor,
-                height: 1.4,
-              ),
-            ),
-            Text(
-              'Nursery pot width: 12cm',
-              style: TextStyle(
-                fontSize: 12.0,
-                fontWeight: FontWeight.w600,
-                color: AppColors.descriptionTextColor,
-                height: 1.4,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
