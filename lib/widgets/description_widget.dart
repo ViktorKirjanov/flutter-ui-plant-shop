@@ -4,7 +4,7 @@ import 'package:plants/colors.dart' as AppColors;
 class Description extends StatelessWidget {
   final String text;
 
-  Description({this.text});
+  Description({required this.text});
 
   @override
   Widget build(BuildContext context) {

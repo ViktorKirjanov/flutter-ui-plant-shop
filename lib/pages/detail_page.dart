@@ -8,7 +8,7 @@ import 'package:plants/widgets/shopping_basket.dart';
 class DetailPage extends StatelessWidget {
   final Plant plant;
 
-  DetailPage({@required this.plant});
+  DetailPage({required this.plant});
 
   @override
   Widget build(BuildContext context) {
